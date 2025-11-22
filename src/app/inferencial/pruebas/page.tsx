@@ -1,5 +1,5 @@
 "use client";
-
+import { API_URL } from '@/config/api';
 import { useState, useRef } from "react";
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
@@ -107,7 +107,7 @@ export default function HypothesisPage() {
             payload = { groups: [g1, g2, g3] };
         }
 
-        const res = await fetch(`http://localhost:8000/api/v1/hypothesis/${endpoint}`, {
+        const res = await fetch(`${API_URL}/api/v1/hypothesis/${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)

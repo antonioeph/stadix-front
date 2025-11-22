@@ -1,5 +1,5 @@
 "use client";
-
+import { API_URL } from '@/config/api';
 import { useEffect, useState } from "react";
 
 interface StatsProps {
@@ -15,7 +15,7 @@ export default function DescriptiveStats({ data }: StatsProps) {
     const fetchStats = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:8000/api/v1/descriptive/basic", {
+        const response = await fetch(`${API_URL}/api/v1/descriptive/basic`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sample_data: data }),

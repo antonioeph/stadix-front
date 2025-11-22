@@ -1,5 +1,5 @@
 "use client";
-
+import { API_URL } from '@/config/api';
 import { useState } from "react";
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
@@ -30,7 +30,7 @@ export default function NonParametricPage() {
         const cols = matrix[0].length;
         if (matrix.some(r => r.length !== cols)) throw new Error("Todas las filas deben tener la misma cantidad de columnas.");
 
-        const res = await fetch("http://localhost:8000/api/v1/nonparametric/chi-square", {
+        const res = await fetch(`${API_URL}/api/v1/nonparametric/chi-square`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ observed_data: matrix })

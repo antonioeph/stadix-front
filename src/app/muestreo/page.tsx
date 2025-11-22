@@ -1,5 +1,5 @@
 "use client";
-
+import { API_URL } from '@/config/api';
 import { useState } from "react";
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
@@ -34,7 +34,7 @@ export default function SamplingPage() {
     };
 
     try {
-        const res = await fetch("http://localhost:8000/api/v1/sampling/calculate", {
+        const res = await fetch(`${API_URL}/api/v1/sampling/calculate`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)

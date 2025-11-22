@@ -7,6 +7,8 @@ import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine 
 } from 'recharts';
 
+import { API_URL } from '@/config/api';
+
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { RegressionPDF } from '@/components/reports/RegressionPDF';
 import { toPng } from 'html-to-image';
@@ -59,7 +61,7 @@ export default function InferencialPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/inference/regression", {
+      const res = await fetch(`${API_URL}/api/v1/inference/regression`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ x_data: xData, y_data: yData })
@@ -254,7 +256,7 @@ print(f"Correlación (r): {r:.4f}")`;
                             formData.append("file", file);
 
                             try {
-                                const res = await fetch("http://localhost:8000/api/v1/inference/upload", {
+                                const res = await fetch(`${API_URL}/api/v1/inference/upload`, {
                                     method: "POST",
                                     body: formData,
                                 });

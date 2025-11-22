@@ -9,6 +9,8 @@ import { DescriptivePDF } from '@/components/reports/DescriptivePDF';
 import { toPng } from 'html-to-image';
 import { useRef } from 'react';
 
+import { API_URL } from '@/config/api';
+
 export default function DescriptivePage() {
   const [activeTab, setActiveTab] = useState<'concepts' | 'lab' | 'code'>('concepts');
   const [inputData, setInputData] = useState("");
@@ -41,7 +43,7 @@ export default function DescriptivePage() {
     const dataArray = inputData.split(",").map(s => Number(s.trim())).filter(n => !isNaN(n));
     
     try {
-      const res = await fetch("http://localhost:8000/api/v1/descriptive/basic", {
+      const res = await fetch(`${API_URL}/api/v1/descriptive/basic`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sample_data: dataArray })
@@ -255,7 +257,7 @@ print(f"Desviación Estándar: {desviacion}")`;
                             formData.append("file", file);
 
                             try {
-                                const res = await fetch("http://localhost:8000/api/v1/descriptive/upload", {
+                                const res = await fetch(`${API_URL}/api/v1/descriptive/upload`, {
                                     method: "POST",
                                     body: formData, // Enviamos el archivo crudo
                                 });

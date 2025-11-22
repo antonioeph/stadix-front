@@ -1,5 +1,5 @@
 "use client";
-
+import { API_URL } from '@/config/api';
 import { useState } from "react";
 
 export default function VariableAnalyzer() {
@@ -22,7 +22,7 @@ export default function VariableAnalyzer() {
 
     try {
       // Llamada a API (Solo endpoint de inferencia)
-      const response = await fetch("http://localhost:8000/api/v1/variables/analyze", {
+      const response = await fetch(`${API_URL}/api/v1/variables/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sample_data: rawArray }),

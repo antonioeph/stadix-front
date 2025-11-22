@@ -1,5 +1,5 @@
 "use client";
-
+import { API_URL } from '@/config/api';
 import { useState, useRef } from "react";
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
@@ -100,7 +100,7 @@ export default function ProbabilityPage() {
     else { endpoint = "normal"; payload = { mean: clean(mean), std: clean(std), x: clean(xVal) }; }
 
     try {
-        const res = await fetch(`http://localhost:8000/api/v1/probability/${endpoint}`, {
+        const res = await fetch(`${API_URL}/api/v1/probability/${endpoint}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
